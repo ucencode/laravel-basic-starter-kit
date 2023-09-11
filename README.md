@@ -11,7 +11,7 @@ This uses Laravel 10.x, Please make sure your server meets the requirements befo
 ### Clone the repo and cd into it
 
 ```bash
-git clone https://github
+git clone https://github.com/mbenkzz/laravel-basic-starter-kit.git
 cd laravel-basic-starter-kit
 ```
 
@@ -20,19 +20,25 @@ cd laravel-basic-starter-kit
 ```bash
 composer install
 ```
-
-### Install NPM dependencies
-
-```bash
-npm install
-```
+In this app, we don't use npm or yarn, we use cdn instead
 
 ### Create a copy of your .env file
     
 ```bash
 cp .env.example .env
 ```
-Then, set your database credentials in your .env file
+
+### Set your database credentials in your .env file
+
+change the following lines in your .env file
+```conf
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_dbname
+DB_USERNAME=your_dbuser
+DB_PASSWORD=your_dbpassword
+```
 
 ### Generate an app encryption key
 
