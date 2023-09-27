@@ -67,6 +67,7 @@
                 </div>
             </div>
         </div>
+        @if(!$is_add)
         <div class="col-md-6">
             <div class="card mb-4">
                 <div class="card-header">
@@ -86,7 +87,7 @@
                         </tr>
                         <tr>
                             <th>Last Active</th>
-                            <td>{{ Helper::customDateFormat($user->last_activity, 'd F Y H:i:s') }}</td>
+                            <td>{{ ($user->last_activity) ? Helper::customDateFormat($user->last_activity, 'd F Y H:i:s') : '-' }}</td>
                         </tr>
                         <tr>
                             <th>Created At</th>
@@ -100,6 +101,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 @endsection
