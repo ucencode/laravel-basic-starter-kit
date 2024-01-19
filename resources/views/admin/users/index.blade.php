@@ -38,29 +38,11 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Created at</th>
-                                <th>Updated at</th>
+                                <th>Role</th>
+                                <th>Last Logged</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach($users as $user)
-                            <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>
-                                    {{ $user->email }}
-                                </td>
-                                <td>{{ $user->created_at }}</td>
-                                <td>{{ $user->updated_at }}</td>
-                                <td>
-                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
-                                    <button type="button" class="btn btn-danger" onclick="deleteUser('{{ route('users.destroy', $user->id) }}')">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -81,8 +63,21 @@
                 'columns': [
                     { name: 'name', data: 'name' },
                     { name: 'email', data: 'email' },
-                    { name: 'created_at', data: 'created_at' },
-                    { name: 'updated_at', data: 'updated_at' },
+                    {
+                        name: 'role',
+                        render: function(data, type, row) {
+                            // bootstrap badge
+                            let badge = document.createElement('span');
+                            if (row.role === 'admin') {
+                                badge.className = 'badge bg-danger';
+                            } else if (row.role === 'user') {
+                                badge.className = 'badge bg-primary';
+                            }
+                            badge.innerHTML = row.role;
+                            return badge.outerHTML;
+                        }
+                    },
+                    { name: 'last_activity', data: 'last_activity' },
                     {
                         name: 'actions',
                         render: function(data, type, row) {
@@ -103,7 +98,7 @@
                     },
                 ],
                 'columnDefs': [{
-                    'targets': [2,3,4], // 3rd,4th,5th columns
+                    'targets': [4], // 5th columns
                     'orderable': false, // set not orderable
                 }]
             });

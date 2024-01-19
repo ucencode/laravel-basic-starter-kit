@@ -42,10 +42,19 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'last_activity' => 'datetime',
         'password' => 'hashed',
     ];
 
+    const ROLE_USER = 'user';
+    const ROLE_ADMIN = 'admin';
+
+    public static function roles(): array
+    {
+        return [
+            self::ROLE_USER,
+            self::ROLE_ADMIN,
+        ];
+    }
 
     /**
      * Check if the user has a specific role.

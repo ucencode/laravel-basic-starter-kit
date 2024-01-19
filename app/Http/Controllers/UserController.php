@@ -37,7 +37,8 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:6', 'confirmed']
+            'password' => ['required', 'min:6', 'confirmed'],
+            'role' => ['required', 'in:user,admin']
         ]);
 
         // Store the user
@@ -77,7 +78,8 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email,' . $id],
-            'password' => ['nullable', 'min:6', 'confirmed']
+            'password' => ['nullable', 'min:6', 'confirmed'],
+            'role' => ['required', 'in:user,admin']
         ]);
 
         // Store the user
@@ -112,8 +114,8 @@ class UserController extends Controller
             'id',
             'name',
             'email',
-            'created_at',
-            'updated_at'
+            'last_activity',
+            'role'
         ]);
 
         return datatables()->of($users)
@@ -123,11 +125,8 @@ class UserController extends Controller
                     $query->orWhere('email', 'like', "%{$request->search['value']}%");
                 }
             })
-            ->editColumn('created_at', function ($user) {
-                return Helper::customDateFormat($user->created_at);
-            })
-            ->editColumn('updated_at', function ($user) {
-                return Helper::customDateFormat($user->updated_at);
+            ->editColumn('last_activity', function ($user) {
+                return Helper::customDateFormat($user->last_activity) ?? '-';
             })
             ->addColumn('edit_url', function ($user) {
                 return route('users.edit', $user->id);

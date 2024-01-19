@@ -57,6 +57,17 @@
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <label for="inputRole" class="form-label">Role</label>
+                            <select class="form-select @error('role') is-invalid @enderror" id="inputRole" name="role">
+                                @foreach (User::roles() as $role)
+                                <option value="{{ $role }}" {{ (old('role', $user->role) == $role) ? 'selected' : '' }}>{{ ucwords($role) }}</option>
+                                @endforeach
+                            </select>
+                            @error('role')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
 
                         {{-- submit --}}
                         <button type="submit" class="btn btn-primary">

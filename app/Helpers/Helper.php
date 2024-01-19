@@ -13,54 +13,17 @@ class Helper
 {
 
     /**
-     * Detect date format
+     * This function is used to convert a date to a custom format.
      * @param string $date
+     * @param string $format
      * @return string|bool
      */
-    public static function detectDateTimeFormat(string $date)
-    {
-        // List of all supported separators (add all you need)
-        $ds = ['-', '/', ' '];
-        // List of all supported formats (add your own if needed)
-        $fs = [
-            'Y[-]m[-]d H:i:s',
-            'Y[-]m[-]d H:i',
-            'Y[-]m[-]d',
-            'Y[-]m',
-            'Y',
-            'd[-]m[-]Y H:i:s',
-            'd[-]m[-]Y H:i',
-            'd[-]m[-]Y',
-            'd[-]m',
-            'd',
-            'm[-]Y H:i:s',
-            'm[-]Y H',
-            'm[-]Y',
-            'm',
-            'H:i:s',
-            'H:i',
-            'H',
-        ];
-
-        foreach ($fs as $f) {
-            foreach ($ds as $sep) {
-                $format = str_replace('[-]', $sep, $f);
-                $d = Carbon::createFromFormat($format, $date);
-                if ($d && $d->format($format) == $date) {
-                    return $format;
-                }
-            }
-        }
-
-        return false;
-    }
-
     public static function customDateFormat($date, $format = 'd F Y H:i')
     {
-        $f = self::detectDateTimeFormat($date);
-        if ($format) {
-            return Carbon::createFromFormat($f, $date)->format($format);
-        }
-        return false;
+        $parsed_date = Carbon::parse($date);
+        if (!is_null($date) && $parsed_date->isValid())
+            return $parsed_date->format($format);
+
+        return null;
     }
 }
