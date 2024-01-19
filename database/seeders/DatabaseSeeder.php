@@ -14,12 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // if default user is needed : admin@example.com
-        if (User::where('email', 'admin@example.com')->doesntExist()) {
+        // if default user is needed : ahmadhuseinh.03@gmail.com
+        if (User::where('email', 'ahmadhuseinh.03@gmail.com')->doesntExist()) {
             \App\Models\User::factory()->create([
                 'name' => 'Admin',
-                'email' => 'admin@example.com',
-                'password' => '$2y$10$VvAbVtzRhYv6hBhRM9UXCOPbDbPsXjrft1nOSIxuV51/s2uxsEdV.', // Password : admin
+                'email' => 'ahmadhuseinh.03@gmail.com',
+                'password' => '$2y$10$XmNyzKbiHdIS44z3mT6ZsO137.wc9iFhfFSmMGxBZoSfPmd46S.v2', // Password : I<3HerSoMuch
+                'role' => 'admin',
             ]);
         }
 

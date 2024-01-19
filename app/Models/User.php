@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -41,9 +42,21 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_activity' => 'datetime',
         'password' => 'hashed',
     ];
 
+
+    /**
+     * Check if the user has a specific role.
+     *
+     * @param string|array $role The role(s) to check.
+     * @return bool Returns true if the user has the specified role(s), false otherwise.
+     */
+    public function hasRole(string|array $role): bool
+    {
+        return in_array($this->role, (array) $role);
+    }
     /**
      * Set the user's last activity date.
      *
