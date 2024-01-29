@@ -11,7 +11,7 @@ This uses Laravel 10.x, Please make sure your server meets the requirements befo
 ### Clone the repo and cd into it
 
 ```bash
-git clone https://github.com/mbenkzz/laravel-basic-starter-kit.git
+git clone https://github.com/ucencode/laravel-basic-starter-kit.git
 cd laravel-basic-starter-kit
 ```
 
@@ -60,7 +60,7 @@ php artisan storage:link
 ```
 
 ### Run the server
-You must motivated first before you run the server
+You must motivated first before you run the server. XD
 ```bash
 php artisan inspire
 ```
