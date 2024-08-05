@@ -25,7 +25,6 @@ class AuthController extends Controller
         // Store the user
         $validatedData['password'] = bcrypt($validatedData['password']);
         $validatedData['email_verified_at'] = now();
-        $validatedData['last_activity'] = now();
         $user = User::create($validatedData);
         // Sign the user in
         Auth::login($user);
@@ -49,9 +48,6 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
 
             $request->session()->regenerate();
-
-            // Update last activity
-            Auth::user()->setLastActivity();
 
             // Redirect to dashboard
             return redirect()->intended(route('dashboard'))->with('success', 'Successfully logged in, Welcome back!');

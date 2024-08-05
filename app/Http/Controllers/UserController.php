@@ -37,8 +37,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:6', 'confirmed'],
-            'role' => ['required', 'in:user,admin']
+            'password' => ['required', 'min:6', 'confirmed']
         ]);
 
         // Store the user
@@ -78,8 +77,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email,' . $id],
-            'password' => ['nullable', 'min:6', 'confirmed'],
-            'role' => ['required', 'in:user,admin']
+            'password' => ['nullable', 'min:6', 'confirmed']
         ]);
 
         // Store the user
@@ -113,9 +111,7 @@ class UserController extends Controller
         $users = User::select([
             'id',
             'name',
-            'email',
-            'last_activity',
-            'role'
+            'email'
         ]);
 
         return datatables()->of($users)
@@ -124,9 +120,6 @@ class UserController extends Controller
                     $query->where('name', 'like', "%{$request->search['value']}%");
                     $query->orWhere('email', 'like', "%{$request->search['value']}%");
                 }
-            })
-            ->editColumn('last_activity', function ($user) {
-                return Helper::customDateFormat($user->last_activity) ?? '-';
             })
             ->addColumn('edit_url', function ($user) {
                 return route('users.edit', $user->id);

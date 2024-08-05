@@ -38,8 +38,6 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Role</th>
-                                <th>Last Logged</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -64,21 +62,6 @@
                     { name: 'name', data: 'name' },
                     { name: 'email', data: 'email' },
                     {
-                        name: 'role',
-                        render: function(data, type, row) {
-                            // bootstrap badge
-                            let badge = document.createElement('span');
-                            if (row.role === 'admin') {
-                                badge.className = 'badge bg-danger';
-                            } else if (row.role === 'user') {
-                                badge.className = 'badge bg-primary';
-                            }
-                            badge.innerHTML = row.role;
-                            return badge.outerHTML;
-                        }
-                    },
-                    { name: 'last_activity', data: 'last_activity' },
-                    {
                         name: 'actions',
                         render: function(data, type, row) {
                             let edit_button = document.createElement('a');
@@ -98,7 +81,7 @@
                     },
                 ],
                 'columnDefs': [{
-                    'targets': [4], // 5th columns
+                    'targets': [2], // 3rd columns
                     'orderable': false, // set not orderable
                 }]
             });
