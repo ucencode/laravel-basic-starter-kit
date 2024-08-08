@@ -47,7 +47,7 @@ services:
       - dbdata:/var/lib/mysql
     networks:
       - app-network
-    
+
 
 networks:
   app-network:

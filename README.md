@@ -17,15 +17,15 @@ Create a new `.env` file by copying the example file.
 cp .env.example .env
 ```
 
-### 3. Build the Docker Containers
+### 3. Set Up Permissions
 
-Build the Docker containers defined in the `docker-compose.yml` file.
+Set up the correct permissions for the project.
 
 ```bash
-docker-compose build
+chmod -R 777 /var/www/storage /var/www/bootstrap/cache
 ```
 
-### 4. Install PHP Dependencies
+### 4. Build the Docker Containers
 
 Run the following command to install PHP dependencies.
 
