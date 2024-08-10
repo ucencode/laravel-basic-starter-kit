@@ -57,8 +57,32 @@ cd ./laravel-basic-starter-kit
 cp .env.example .env
 ```
 
-- Db configuration
-- composer install
-- artisan app key generate
-- artisan migrate
-### 3
+### 3. DB Configuration
+
+Set up your database configuration in the `.env` file.
+
+### 4. Install Composer Dependencies
+
+```bash
+composer install
+```
+
+### 5. Generate App Key
+
+```bash
+php artisan key:generate
+```
+
+### 6. Run Migrations
+
+```bash
+php artisan migrate
+```
+
+### 7. Run the Development Server
+
+```bash
+php artisan serve
+```
+
+You can now access the server at http://localhost:8000
