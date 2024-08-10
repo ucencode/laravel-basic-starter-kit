@@ -1,5 +1,7 @@
 # Laravel Basic Starter Kit
 
+## For developer using Docker
+
 ### 1. Clone the Repository
 
 First, clone this repository to your local machine and navigate into the project directory.
@@ -19,7 +21,7 @@ cp .env.example .env
 
 ### 3. Set Up Permissions
 
-Set up the correct permissions for the project.
+If you are using Linux or MacOS. Set up the correct permissions for the project.
 
 ```bash
 chmod -R 777 /var/www/storage /var/www/bootstrap/cache
@@ -32,3 +34,31 @@ Run the following command to install PHP dependencies.
 ```bash
 docker-compose up -d
 ```
+
+## For non-Docker user
+
+### Requirement
+
+- PHP 8.2 with composer
+- Any database (recommended : PostgreSQL or MySQL)
+
+### 1. Clone this Repository
+
+First, clone this repository to your local machine and navigate into the project directory.
+
+```bash
+git clone https://github.com/ucencode/laravel-basic-starter-kit.git
+cd ./laravel-basic-starter-kit
+```
+
+### 2. Copy the .env
+
+```bash
+cp .env.example .env
+```
+
+- Db configuration
+- composer install
+- artisan app key generate
+- artisan migrate
+### 3
